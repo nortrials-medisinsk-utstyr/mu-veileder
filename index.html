@@ -306,7 +306,7 @@ ol.pitfall-list li::before{content:counter(pit,decimal-leading-zero);position:ab
 
 /* phase path (ch4) */
 .phase-path{position:relative;margin:30px 0 10px;}
-.phase-stop{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:0 0 26px;position:relative;}
+.phase-stop{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:0 0 26px;position:relative;}
 .phase-stop:not(:last-child)::before{content:"";position:absolute;left:27px;top:56px;bottom:0;width:2px;background:var(--tint-2);}
 .phase-badge{width:56px;height:56px;border-radius:50%;background:var(--navy-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:var(--fs-md);border:1px solid rgba(255,255,255,.18);}
 .phase-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;text-decoration:none;color:inherit;display:block;transition:border-color .15s ease, background .15s ease;}
@@ -318,6 +318,9 @@ ol.pitfall-list li::before{content:counter(pit,decimal-leading-zero);position:ab
 .deep-link .dl-label{display:block;font-size:var(--fs-xs);color:var(--on-tint);margin-bottom:4px;}
 .deep-link h3{font-family:var(--font-display);color:var(--on-tint);font-size:var(--fs-md);margin:0 0 6px;}
 .deep-link p{margin:0;color:var(--on-tint);font-size:var(--fs-sm);line-height:1.5;}
+main{overflow-wrap:break-word;}
+.deep-link.veiv-link{border-left:4px solid var(--accent);}
+.deep-link .veiv-arrow{font-size:.85em;}
 
 .mini-path{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:0 0 22px;}
 .mini-path a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--tint-1);color:var(--on-tint);text-decoration:none;font-family:var(--font-display);font-weight:700;font-size:var(--fs-xs);border:2px solid transparent;}
@@ -607,6 +610,8 @@ EN.chapters = [
   body:`
   <p class="no-rule">This chapter summarises the regulatory basics everyone involved should know before entering the package pathway itself. The details are found in the MDR, the IVDR, the AI Act and the accompanying MDCG guidance documents — here only a practical overview adapted to the Norwegian context is given.</p>
 
+<!--VEIVISER-->
+
   <h2>2.1 What is a medical device?</h2>
   <ul class="blist">
     <li>The definition is set out in Regulation (EU) 2017/745 on medical devices (MDR) and Regulation (EU) 2017/746 on in vitro diagnostic medical devices (IVDR). See below.</li>
@@ -682,7 +687,7 @@ EN.chapters = [
     <li><strong>ISO 14971</strong> — risk management throughout the product's lifetime.</li>
     <li><strong>IEC 62304</strong> — software life cycle processes.</li>
     <li><strong>IEC 62366-1</strong> — usability engineering.</li>
-    <li><strong>ISO 14155</strong> — good clinical practice for clinical investigations of medical devices in humans (2026 edition).</li>
+    <li><strong>ISO 14155:2026</strong> — good clinical practice for clinical investigations of medical devices in humans.</li>
     <li><strong>ISO 10993</strong> series — biological evaluation/biocompatibility.</li>
     <li><strong>IEC 81001-5-1</strong> — cybersecurity requirements for health IT software.</li>
   </ul>`
@@ -736,7 +741,8 @@ EN.chapters = [
     <li>Interoperability with electronic health record systems and medical-technical infrastructure in hospitals.</li>
     <li>Data protection and data processing: the General Data Protection Regulation (GDPR), the Health Registries Act (helseregisterloven), data processing agreements and a data protection impact assessment (DPIA).</li>
     <li>Clinical evaluation of software: particular methodological challenges in documenting clinical benefit and performance for algorithms.</li>
-  </ul>`
+  </ul>
+  <!--VEIVISER-->`
 },
 {
   n:6, title:"Common pitfalls and lessons learned",
@@ -768,6 +774,8 @@ EN.chapters = [
   <p class="no-rule">This chapter is a practical toolbox. It does not provide ready-made templates, but checklists and descriptions you can work on further. If you need templates for specific purposes, NorTrials Medical Devices can help you. Raise it in the first meeting after you have submitted an enquiry via the <a href="#/kapittel/7/henvendelse">Feasibility portal (7.4)</a>.</p>
 
   <div class="note-box"><span class="nb-label">Disclaimer</span><p>The checklists are simplified aids based on the regulations and NorTrials' courses. They do not replace the MDR, the IVDR or official guidance, and the decision on whether a product is a medical device, and which class it belongs to, is the manufacturer's responsibility. If in doubt, get in touch.</p></div>
+
+  <!--VEIVISER-->
 
   <h2 id="er-det-medisinsk-utstyr">7.1 Is my product a medical device?</h2>
   <p>What decides it is <strong>the intended purpose</strong> stated by the manufacturer, not the technology the product is built on. The intended purpose is the use the manufacturer describes in the labelling, instructions for use and promotional or sales material, and as stated in the clinical evaluation (MDR article 2(12)). A simple rule of thumb: if the product is meant to influence a patient's course of treatment, it is probably a medical device.</p>
@@ -874,7 +882,7 @@ EN.chapters = [
   <ul class="check">
     <li>The risk class has been determined (see <a href="#/kapittel/7/risikoklasse">7.2</a>).</li>
     <li>The intended purpose and claims about the device have been written down. The claims must be documented with clinical evidence in the clinical evaluation, either from literature and earlier studies or from new clinical investigations.</li>
-    <li>You know the regulations that apply: the MDR (or IVDR), Norwegian medical devices legislation and the ISO 14155 standard for good clinical practice (GCP).</li>
+    <li>You know the regulations that apply: the MDR (or IVDR), Norwegian medical devices legislation and the ISO 14155:2026 standard for good clinical practice (GCP).</li>
     <li>It has been clarified that the study is to be carried out, in whole or in part, in Norway.</li>
   </ul>
 
@@ -955,13 +963,13 @@ EN.chapters = [
   <h3>Frequently asked questions</h3>
   <ul class="blist">
     <li><strong>Does a user evaluation of a CE-marked product have to go to REK?</strong> Normally not, as long as the evaluation concerns practical experience, user experience, ergonomics or function in ordinary clinical operation. The boundary lies where systematic research is carried out to obtain new, generalisable knowledge, for example with research questions, hypotheses, additional examinations or planned publication. The study must then be notified to REK.</li>
-    <li><strong>Can the study be carried out in other countries?</strong> Yes. The investigation should be carried out on a population corresponding to the one the device will be used on. Studies outside Norway can be used for CE marking if they are ethically approved, methodologically sound and relevant to the intended use. Plan according to ISO 14155, which is harmonised across countries.</li>
+    <li><strong>Can the study be carried out in other countries?</strong> Yes. The investigation should be carried out on a population corresponding to the one the device will be used on. Studies outside Norway can be used for CE marking if they are ethically approved, methodologically sound and relevant to the intended use. Plan according to ISO 14155:2026, which is harmonised across countries.</li>
     <li><strong>Can a Norwegian site take part in a study that is already running abroad?</strong> Yes, but approvals from abroad are not enough. You need an application to REK KULMU, where relevant an application or notification to DMP, local approval with contracts, and an assessment of privacy.</li>
     <li><strong>Can an earlier research study be used as clinical evidence?</strong> Yes, if it is relevant to the device and the risk profile, meets the requirements of MDR Annexes XIV and XV, and was carried out with a version of the device similar to the one that will be sold.</li>
     <li><strong>Who pays?</strong> The sponsor finances the investigation and pays the hospital for all study-related activity through an agreement. Hospitals cannot finance an industry-initiated study. Payment to the investigator goes via the health trust or the department, not directly from the sponsor.</li>
     <li><strong>Who owns the data?</strong> The sponsor. In an investigator-initiated study it is the researcher or the institution. If industry is to use the data for CE marking, a formal agreement on access and rights is required, as well as access to the study report.</li>
     <li><strong>Can a CRO recruit participants?</strong> No. Recruitment takes place via approved investigation sites, because only healthcare personnel with treatment responsibility can contact patients. A CRO can help with recruitment strategy and material.</li>
-    <li><strong>Do we have to follow ISO 14155?</strong> The standard is not a legal requirement, but is recommended as recognised practice. What is legally required is the MDR and any national requirements, and these are not automatically covered by the standard.</li>
+    <li><strong>Do we have to follow ISO 14155:2026?</strong> The standard is not a legal requirement, but is recommended as recognised practice. What is legally required is the MDR and any national requirements, and these are not automatically covered by the standard.</li>
     <li><strong>Who is responsible for software used for data collection?</strong> The sponsor. The software must be validated and suitable, also when supplied by a third party.</li>
   </ul>
 
@@ -1006,7 +1014,7 @@ EN.chapters = [
     <li><strong>Feedback from clinicians:</strong> early idea discussions, assessment of concepts, validation of prototypes and workshops with clinician panels.</li>
     <li><strong>Specialised services and regulatory guidance:</strong> advice on the MDR and assessments of technical solutions in information security and privacy.</li>
     <li><strong>Preclinical and usability studies:</strong> controlled environments for testing and validation, also with certified personnel.</li>
-    <li><strong>Clinical investigations:</strong> systematic clinical validation according to good clinical practice (ISO 14155), coordinated with DMP and REK KULMU.</li>
+    <li><strong>Clinical investigations:</strong> systematic clinical validation according to good clinical practice (ISO 14155:2026), coordinated with DMP and REK KULMU.</li>
   </ul>
 
   <h2 id="fasiliteter">7.5 Requirements for facilities and expertise at hospitals</h2>
@@ -1032,7 +1040,7 @@ EN.chapters = [
   <h3>What an investigation site must have in place</h3>
   <p>For clinical investigations, requirements are placed on the investigation site, not only on the premises:</p>
   <ul class="check">
-    <li>A principal investigator with a relevant CV and GCP training according to ISO 14155.</li>
+    <li>A principal investigator with a relevant CV and GCP training according to ISO 14155:2026.</li>
     <li>Study personnel, for example a study nurse and a coordinator, with enough time set aside for the study.</li>
     <li>Training in the protocol and study-specific procedures, and an initiation visit before start.</li>
     <li>An agreement with the sponsor covering all costs of the study.</li>
@@ -1125,7 +1133,7 @@ EN.chapters = [
       <tr><th scope="row" class="term">DPO</th><td>Data Protection Officer.</td></tr>
       <tr><th scope="row" class="term">EMA</th><td>European Medicines Agency.</td></tr>
       <tr><th scope="row" class="term">EUDAMED</th><td>European database on medical devices. The modules for actor registration, devices, certificates and market surveillance are in use. The module for clinical investigations is not ready.</td></tr>
-      <tr><th scope="row" class="term">GCP</th><td>Good Clinical Practice. For medical devices described in ISO 14155.</td></tr>
+      <tr><th scope="row" class="term">GCP</th><td>Good Clinical Practice. For medical devices described in ISO 14155:2026.</td></tr>
       <tr><th scope="row" class="term">GSPR</th><td>General Safety and Performance Requirements (Annex I of the MDR).</td></tr>
       <tr><th scope="row" class="term">HF / RHF</th><td>Health trust (helseforetak) / regional health authority (regionalt helseforetak).</td></tr>
       <tr><th scope="row" class="term">HTA</th><td>Health Technology Assessment.</td></tr>
@@ -1235,7 +1243,7 @@ EN.phases = [
   body:`
   <li>Identify the unmet clinical need and the value proposition: who is the patient, which problem is solved, <strong>for how many</strong>, and for whom in the hospital?</li>
   <li>Map what exists today: are there others solving the same problem, and how does your solution differ from them?</li>
-  <li>Preliminary regulatory screening: Is this a medical device? Likely risk class? Is software or artificial intelligence (AI) involved?</li>
+  <li>Preliminary regulatory screening: Is this a medical device? Likely risk class? Is software or artificial intelligence (AI) involved? The <a class="ext" href="%%VEIV%%" target="_blank" rel="noopener">interactive regulatory guide</a> gives a first overview.</li>
   <li>Clarify the purpose of the enquiry early — development/testing vs. plain sale of an existing, CE-marked product (routed to procurement if there is no need for a study, investigation or R&amp;D).</li>
   <li>Once the need and purpose are clarified, you make first contact with NorTrials and/or the hospital's innovation unit. This is described in <a href="#/pakkeforlop/fase/1">phase 1</a>.</li>`
 },
@@ -1262,17 +1270,19 @@ EN.phases = [
   <li>Build up the technical documentation in parallel with development (not as an afterthought).</li>`
 },
 { n:3, title:"Clinical investigation", teaser:"Clinical evaluation plan, coordinated applications to REK KULMU and DMP, and choice of CRO.",
+  note:`<strong>Clinical evaluation is not the same as clinical investigation.</strong> The MDR requires clinical evaluation of all medical devices (art. 61), but not necessarily a clinical investigation. Many devices can cover the evaluation with literature, data from equivalent devices and post-market clinical follow-up. Clinical investigation is the main rule for implants and class III, with exceptions, and for software it may be necessary when the results affect treatment decisions. Read more in the guide’s section on <a class="ext" href="%%VEIV_CLIN%%" target="_blank" rel="noopener">clinical evaluation and clinical data</a>.`,
   example:true,
   body:`
   <li>Clinical evaluation plan (MDR art. 61): assess whether equivalence data is sufficient, or whether a clinical investigation of your own is necessary.</li>
   <li>Feasibility/pilot studies (Early Feasibility Study) versus pivotal/confirmatory studies.</li>
   <li>Required approvals: research ethics review by the committee for clinical investigation of medicinal products and medical devices (<a class="ext" href="https://rekportalen.no/rek-kulmu/" target="_blank" rel="noopener">REK KULMU</a>), application or notification to the Norwegian Medical Products Agency (DMP), and assessment by the data protection officer (DPO), including a data protection impact assessment (DPIA).</li>
   <li><strong>Coordinate the applications to REK KULMU and DMP.</strong> There is no joint application: the two bodies assess separately. Send the applications at the same time and with identical documents. DMP and REK KULMU have prepared a joint <a class="ext" href="https://dmp.no/globalassets/documents/medisinsk-utstyr/klinisk-utproving/regulatorisk-veiviser-for-kliniske-utprovinger-etter-mdr.pdf" target="_blank" rel="noopener">regulatory guide</a> (in Norwegian). Clarify with them when the study can start.</li>
-  <li>Study design, endpoints, statistical plan and monitoring according to ISO 14155.</li>
+  <li>Study design, endpoints, statistical plan and monitoring according to ISO 14155:2026.</li>
   <li>Choice of contract research organisation (CRO) and coordination for multi-site studies across health trusts.</li>
   <li>Patient safety, informed consent and handling of deviations/adverse events along the way.</li>`
 },
 { n:4, title:"CE marking and conformity assessment", teaser:"Choose the conformity assessment route, finalise the technical documentation and think HTA.",
+  veiviser:true,
   who:"Legally, the manufacturer is responsible for CE marking. In research-driven projects there is often no manufacturer yet, and it then becomes unclear who brings the work to completion.",
   body:`
   <li>Choose the right conformity assessment route based on risk class (self-declaration vs. notified body).</li>
@@ -1341,6 +1351,7 @@ EN.ui = {
   home:'Home', phase:'Phase', phases:'Phases',
   rail:{1:'Introduction',2:'Regulations',3:'Actors',4:'Package pathway',5:'Software/AI',6:'Pitfalls',7:'Toolbox',8:'Contact',9:'Appendices'},
   example:{label:'See also',title:'Example of an investigation pathway',text:'Figure with steps, responsibilities and timeframes for the investigation of a hypothetical medical device.'},
+  veiv:{label:'Interactive tool',title:'Regulatory guide for medical devices',text:'Answer a few questions about your product and get an overview of regulations, class, CE marking and clinical evaluation. Opens in a new tab. Draft.',newtab:'(opens in a new tab)'},
   deep:{label:'Deep dive',title:'Health technology assessment and mini-HTA',text:'The landscape of New Methods, mini-HTA and joint European assessment, and how to prepare.'},
   chNav:{aria:'Previous and next chapter',prev:'← Previous chapter',next:'Next chapter →'},
   phNav:{aria:'Previous and next phase',prev:'← Previous phase',next:'Next phase →',back:'← Back',nextCh:'Next chapter →',nextChTitle:'5. Special considerations for software and AI'},
@@ -1447,6 +1458,12 @@ EN.renderHome = function(){
       <h2 class="section-title">Nine chapters, one route</h2>
       <p class="lede-dark">Click in where you need it. The package pathway in chapter 4 is the guide itself — the other chapters give you the regulatory side, the actors and the tools around it.</p>
       <div class="routemap" id="homeRoute"></div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="wrap">
+      <div style="max-width:760px">${VEIV_CARD_HTML}</div>
     </div>
   </section>`;
 };
@@ -1585,6 +1602,8 @@ const CHAPTERS_NO = [
   body:`
   <p class="no-rule">Dette kapittelet oppsummerer de regulatoriske grunnbegrepene alle involverte bør kjenne før man går inn i selve pakkeforløpet. Detaljene finnes i MDR, IVDR, AI-forordningen og tilhørende MDCG-veiledninger — her gis kun en praktisk oversikt tilpasset norsk kontekst.</p>
 
+<!--VEIVISER-->
+
   <h2>2.1 Hva er medisinsk utstyr?</h2>
   <ul class="blist">
     <li>Definisjonen står i forordning (EU) 2017/745 om medisinsk utstyr (MDR) og forordning (EU) 2017/746 om in vitro-diagnostisk medisinsk utstyr (IVDR). Se under.</li>
@@ -1660,7 +1679,7 @@ const CHAPTERS_NO = [
     <li><strong>ISO 14971</strong> — risikohåndtering gjennom hele produktets levetid.</li>
     <li><strong>IEC 62304</strong> — programvarens livssyklusprosesser.</li>
     <li><strong>IEC 62366-1</strong> — bruksegnethet (usability engineering).</li>
-    <li><strong>ISO 14155</strong> — god klinisk praksis for kliniske utprøvinger av medisinsk utstyr på mennesker (utgave 2026).</li>
+    <li><strong>ISO 14155:2026</strong> — god klinisk praksis for kliniske utprøvinger av medisinsk utstyr på mennesker.</li>
     <li><strong>ISO 10993</strong>-serien — biologisk evaluering/biokompatibilitet.</li>
     <li><strong>IEC 81001-5-1</strong> — cybersikkerhetskrav for helse-IT-programvare.</li>
   </ul>`
@@ -1713,7 +1732,8 @@ const CHAPTERS_NO = [
     <li>Interoperabilitet med journalsystemer og medisinsk-teknisk infrastruktur i sykehus.</li>
     <li>Personvern og databehandling: personvernforordningen (GDPR), helseregisterloven, databehandleravtaler og personvernkonsekvensvurdering (DPIA).</li>
     <li>Klinisk evaluering av programvare: særlige metodiske utfordringer ved å dokumentere klinisk nytte og ytelse for algoritmer.</li>
-  </ul>`
+  </ul>
+  <!--VEIVISER-->`
 },
 {
   n:6, title:"Vanlige fallgruver og læringspunkter",
@@ -1744,6 +1764,8 @@ const CHAPTERS_NO = [
   <p class="no-rule">Kapittelet er en praktisk verktøykasse. Det gir ikke ferdige maler, men sjekklister og beskrivelser du kan jobbe videre med. Trenger du maler til konkrete formål, kan NorTrials Medisinsk utstyr hjelpe deg. Ta det opp i første møte etter at du har sendt en henvendelse via <a href="#/kapittel/7/henvendelse">Feasibility-portalen (7.4)</a>.</p>
 
   <div class="note-box"><span class="nb-label">Forbehold</span><p>Sjekklistene er forenklede hjelpemidler basert på regelverket og NorTrials sine kurs. De erstatter ikke MDR, IVDR eller offisielle veiledninger, og avgjørelsen om et produkt er medisinsk utstyr, og hvilken klasse det har, er produsentens ansvar. Er du i tvil, ta kontakt.</p></div>
+
+  <!--VEIVISER-->
 
   <h2 id="er-det-medisinsk-utstyr">7.1 Er produktet mitt medisinsk utstyr?</h2>
   <p>Avgjørende er <strong>det tiltenkte formålet</strong> som produsenten har oppgitt, ikke hvilken teknologi produktet bygger på. Tiltenkt formål er den bruken produsenten beskriver i merking, bruksanvisning og markedsførings- eller salgsmateriale, og som er angitt i den kliniske evalueringen (MDR artikkel 2 nr. 12). En enkel tommelfingerregel: hvis produktet er ment å påvirke behandlingsløpet til en pasient, er det sannsynligvis medisinsk utstyr.</p>
@@ -1850,7 +1872,7 @@ const CHAPTERS_NO = [
   <ul class="check">
     <li>Risikoklassen er bestemt (se <a href="#/kapittel/7/risikoklasse">7.2</a>).</li>
     <li>Tiltenkt formål og påstander om utstyret er skrevet ned. Påstandene må dokumenteres med klinisk evidens i den kliniske evalueringen, enten fra litteratur og tidligere studier eller fra nye kliniske utprøvinger.</li>
-    <li>Du kjenner regelverket som gjelder: MDR (eller IVDR), norsk lov om medisinsk utstyr og standarden ISO 14155 for god klinisk praksis (GCP).</li>
+    <li>Du kjenner regelverket som gjelder: MDR (eller IVDR), norsk lov om medisinsk utstyr og standarden ISO 14155:2026 for god klinisk praksis (GCP).</li>
     <li>Det er avklart at studien skal gjennomføres, helt eller delvis, i Norge.</li>
   </ul>
 
@@ -1931,13 +1953,13 @@ const CHAPTERS_NO = [
   <h3>Vanlige spørsmål</h3>
   <ul class="blist">
     <li><strong>Må en brukerevaluering av et CE-merket produkt til REK?</strong> Normalt ikke, så lenge evalueringen gjelder praktiske erfaringer, brukeropplevelse, ergonomi eller funksjon i vanlig klinisk drift. Grensen går der man gjør systematisk forskning for å få ny, generaliserbar kunnskap, for eksempel med forskningsspørsmål, hypoteser, ekstra undersøkelser eller planlagt publisering. Da må studien meldes til REK.</li>
-    <li><strong>Kan studien gjøres i andre land?</strong> Ja. Utprøvingen bør gjøres på en populasjon som tilsvarer den utstyret skal brukes på. Studier utenfor Norge kan brukes i CE-merkingen hvis de er etisk godkjent, metodisk gode og relevante for tiltenkt bruk. Planlegg etter ISO 14155, som er harmonisert på tvers av land.</li>
+    <li><strong>Kan studien gjøres i andre land?</strong> Ja. Utprøvingen bør gjøres på en populasjon som tilsvarer den utstyret skal brukes på. Studier utenfor Norge kan brukes i CE-merkingen hvis de er etisk godkjent, metodisk gode og relevante for tiltenkt bruk. Planlegg etter ISO 14155:2026, som er harmonisert på tvers av land.</li>
     <li><strong>Kan en norsk site delta i en studie som allerede er i gang i utlandet?</strong> Ja, men godkjenninger fra utlandet er ikke nok. Du trenger søknad til REK KULMU, eventuelt søknad eller melding til DMP, lokal godkjenning med kontrakter og vurdering av personvern.</li>
     <li><strong>Kan en tidligere forskningsstudie brukes som klinisk evidens?</strong> Ja, hvis den er relevant for utstyret og risikoprofilen, oppfyller kravene i MDR vedlegg XIV og XV, og er gjort med en versjon av utstyret som ligner den som skal selges.</li>
     <li><strong>Hvem betaler?</strong> Sponsor finansierer utprøvingen og betaler sykehuset for all studierelatert aktivitet gjennom avtale. Sykehus kan ikke finansiere en industriinitiert studie. Betaling til utprøver går via helseforetaket eller avdelingen, ikke direkte fra sponsor.</li>
     <li><strong>Hvem eier dataene?</strong> Sponsor. I en forskerinitiert studie er det forskeren eller institusjonen. Skal industrien bruke dataene i CE-merkingen, kreves en formell avtale om tilgang og rettigheter, og tilgang til studierapporten.</li>
     <li><strong>Kan en CRO rekruttere deltakere?</strong> Nei. Rekruttering skjer via godkjente utprøvingssteder, fordi bare helsepersonell med behandlingsansvar kan kontakte pasienter. En CRO kan hjelpe til med rekrutteringsstrategi og -materiell.</li>
-    <li><strong>Må vi følge ISO 14155?</strong> Standarden er ikke lovpålagt, men er anbefalt som anerkjent praksis. Det som er lovpålagt, er kravene i MDR og eventuelle nasjonale krav, og de er ikke automatisk dekket av standarden.</li>
+    <li><strong>Må vi følge ISO 14155:2026?</strong> Standarden er ikke lovpålagt, men er anbefalt som anerkjent praksis. Det som er lovpålagt, er kravene i MDR og eventuelle nasjonale krav, og de er ikke automatisk dekket av standarden.</li>
     <li><strong>Hvem ansvarer for programvare til datainnsamling?</strong> Sponsor. Programvaren må være validert og egnet, også når den leveres av tredjepart.</li>
   </ul>
 
@@ -1982,7 +2004,7 @@ const CHAPTERS_NO = [
     <li><strong>Tilbakemelding fra klinikere:</strong> tidlige idédiskusjoner, vurdering av konsepter, validering av prototyper og workshops med klinikerpaneler.</li>
     <li><strong>Spesialiserte tjenester og regulatorisk veiledning:</strong> råd om MDR og vurderinger av tekniske løsninger innen informasjonssikkerhet og personvern.</li>
     <li><strong>Prekliniske studier og brukervennlighetsstudier:</strong> kontrollerte omgivelser for testing og validering, også med sertifisert personell.</li>
-    <li><strong>Kliniske utprøvinger:</strong> systematisk klinisk validering etter god klinisk praksis (ISO 14155), koordinert med DMP og REK KULMU.</li>
+    <li><strong>Kliniske utprøvinger:</strong> systematisk klinisk validering etter god klinisk praksis (ISO 14155:2026), koordinert med DMP og REK KULMU.</li>
   </ul>
 
   <h2 id="fasiliteter">7.5 Krav til fasiliteter og ekspertise ved sykehus</h2>
@@ -2008,7 +2030,7 @@ const CHAPTERS_NO = [
   <h3>Hva et utprøvingssted må ha på plass</h3>
   <p>For klinisk utprøving stilles det krav til utprøvingsstedet, ikke bare til lokalene:</p>
   <ul class="check">
-    <li>En hovedutprøver med relevant CV og GCP-opplæring etter ISO 14155.</li>
+    <li>En hovedutprøver med relevant CV og GCP-opplæring etter ISO 14155:2026.</li>
     <li>Studiepersonell, for eksempel studiesykepleier og koordinator, med nok tid avsatt til studien.</li>
     <li>Opplæring i protokollen og studiespesifikke prosedyrer, og et initieringsbesøk før oppstart.</li>
     <li>Avtale med sponsor som dekker alle kostnader ved studien.</li>
@@ -2101,7 +2123,7 @@ const CHAPTERS_NO = [
       <tr><th scope="row" class="term">EMA</th><td>European Medicines Agency — Det europeiske legemiddelbyrået.</td></tr>
       <tr><th scope="row" class="term">EUDAMED</th><td>Europeisk database for medisinsk utstyr. Modulene for aktørregistrering, produkter, sertifikater og markedstilsyn er i bruk. Modulen for kliniske utprøvinger er ikke klar.</td></tr>
       <tr><th scope="row" class="term">FoU</th><td>Forskning og utvikling.</td></tr>
-      <tr><th scope="row" class="term">GCP</th><td>Good Clinical Practice — god klinisk praksis. For medisinsk utstyr beskrevet i ISO 14155.</td></tr>
+      <tr><th scope="row" class="term">GCP</th><td>Good Clinical Practice — god klinisk praksis. For medisinsk utstyr beskrevet i ISO 14155:2026.</td></tr>
       <tr><th scope="row" class="term">GSPR</th><td>General Safety and Performance Requirements — generelle sikkerhets- og ytelseskrav (vedlegg I i MDR).</td></tr>
       <tr><th scope="row" class="term">HF / RHF</th><td>Helseforetak / regionalt helseforetak.</td></tr>
       <tr><th scope="row" class="term">HTA</th><td>Health Technology Assessment — metodevurdering.</td></tr>
@@ -2210,7 +2232,7 @@ const PHASES_NO = [
   body:`
   <li>Identifisere uløst klinisk behov og verdiproposisjon: hvem er pasienten, hvilket problem løses, <strong>for hvor mange</strong>, og for hvem i sykehuset?</li>
   <li>Kartlegge hva som finnes i dag: finnes det andre som løser det samme problemet, og hvordan skiller din løsning seg fra dem?</li>
-  <li>Foreløpig regulatorisk screening: Er dette medisinsk utstyr? Sannsynlig risikoklasse? Er programvare eller kunstig intelligens (AI) involvert?</li>
+  <li>Foreløpig regulatorisk screening: Er dette medisinsk utstyr? Sannsynlig risikoklasse? Er programvare eller kunstig intelligens (AI) involvert? Den <a class="ext" href="%%VEIV%%" target="_blank" rel="noopener">interaktive regulatoriske veiviseren</a> gir en første oversikt.</li>
   <li>Avklare formålet med henvendelsen tidlig — utvikling/testing vs. rent salg av eksisterende, CE-merket produkt (rutes til innkjøp hvis ikke behov for studie/utprøving/FoU).</li>
   <li>Når behov og formål er avklart, tar du førstekontakt med NorTrials og/eller sykehusets innovasjonsenhet. Det beskrives i <a href="#/pakkeforlop/fase/1">fase 1</a>.</li>`
 },
@@ -2237,17 +2259,19 @@ const PHASES_NO = [
   <li>Oppbygging av teknisk dokumentasjon parallelt med utviklingen (ikke som et etterskudd).</li>`
 },
 { n:3, title:"Klinisk utprøving", teaser:"Klinisk evalueringsplan, koordinerte søknader til REK KULMU og DMP, og valg av CRO.",
+  note:`<strong>Klinisk evaluering er ikke det samme som klinisk utprøving.</strong> MDR krever klinisk evaluering av alt medisinsk utstyr (art. 61), men ikke nødvendigvis en klinisk utprøving. Mange utstyr kan dekke evalueringen med litteratur, data fra tilsvarende utstyr og klinisk oppfølging etter markedsføring. Klinisk utprøving er hovedregelen for implantater og klasse III, med unntak, og for programvare kan den være nødvendig når resultatene påvirker behandlingsbeslutninger. Les mer i veiviserens avsnitt om <a class="ext" href="%%VEIV_CLIN%%" target="_blank" rel="noopener">klinisk evaluering og kliniske data</a>.`,
   example:true,
   body:`
   <li>Klinisk evalueringsplan (MDR art. 61): vurdere om ekvivalensdata er tilstrekkelig, eller om egen klinisk utprøving er nødvendig.</li>
   <li>Feasibility-/pilotstudier (Early Feasibility Study) versus pivotale/bekreftende studier.</li>
   <li>Nødvendige godkjenninger: forskningsetisk vurdering i komiteen for klinisk utprøving av legemidler og medisinsk utstyr (<a class="ext" href="https://rekportalen.no/rek-kulmu/" target="_blank" rel="noopener">REK KULMU</a>), søknad eller melding til Direktoratet for medisinske produkter (DMP), og vurdering hos personvernombudet (DPO), blant annet personvernkonsekvensvurdering (DPIA).</li>
   <li><strong>Koordiner søknadene til REK KULMU og DMP.</strong> Det finnes ingen felles søknad: de to instansene vurderer hver for seg. Send søknadene samtidig og med identiske dokumenter. DMP og REK KULMU har utarbeidet en felles <a class="ext" href="https://dmp.no/globalassets/documents/medisinsk-utstyr/klinisk-utproving/regulatorisk-veiviser-for-kliniske-utprovinger-etter-mdr.pdf" target="_blank" rel="noopener">regulatorisk veiviser</a>. Avklar med dem når studien kan starte.</li>
-  <li>Studiedesign, endepunkter, statistisk plan og monitorering etter ISO 14155.</li>
+  <li>Studiedesign, endepunkter, statistisk plan og monitorering etter ISO 14155:2026.</li>
   <li>Valg av kontraktsforskningsorganisasjon (CRO) og koordinering ved multisenterstudier på tvers av helseforetak.</li>
   <li>Pasientsikkerhet, informert samtykke og håndtering av avvik/uønskede hendelser underveis.</li>`
 },
 { n:4, title:"CE-merking og samsvarsvurdering", teaser:"Velge samsvarsvurderingsrute, ferdigstille teknisk dokumentasjon og tenke HTA.",
+  veiviser:true,
   who:"Juridisk er det produsenten som er ansvarlig for CE-merkingen. I forskningsdrevne prosjekter finnes det ofte ingen produsent ennå, og da blir det uklart hvem som bringer arbeidet i mål.",
   body:`
   <li>Velge riktig samsvarsvurderingsrute ut fra risikoklasse (egenerklæring vs. teknisk kontrollorgan).</li>
@@ -2297,6 +2321,7 @@ const UI_NO = {
   home:'Hjem', phase:'Fase', phases:'Faser',
   rail:{1:'Innledning',2:'Regelverk',3:'Aktører',4:'Pakkeforløpet',5:'Programvare/AI',6:'Fallgruver',7:'Verktøy',8:'Kontakt',9:'Vedlegg'},
   example:{label:'Se også',title:'Eksempel på et utprøvingsforløp',text:'Figur med trinn, ansvar og tidsrammer for utprøving av et tenkt medisinsk utstyr.'},
+  veiv:{label:'Interaktivt verktøy',title:'Regulatorisk veiviser for medisinsk utstyr',text:'Svar på noen spørsmål om produktet ditt og få en oversikt over regelverk, klasse, CE-merking og klinisk evaluering. Åpnes i en ny fane. Utkast.',newtab:'(åpnes i ny fane)'},
   deep:{label:'Fordypning',title:'Metodevurdering og mini-metodevurdering',text:'Landskapet for Nye metoder, mini-metodevurdering og felleseuropeisk vurdering, og hvordan du forbereder deg.'},
   chNav:{aria:'Forrige og neste kapittel',prev:'← Forrige kapittel',next:'Neste kapittel →'},
   phNav:{aria:'Forrige og neste fase',prev:'← Forrige fase',next:'Neste fase →',back:'← Tilbake',nextCh:'Neste kapittel →',nextChTitle:'5. Særlige hensyn for programvare og AI'},
@@ -2318,7 +2343,11 @@ const LANG_KEY = 'nt-veileder-lang';
 let LANG = 'no';
 let CHAPTERS = CHAPTERS_NO, PHASES = PHASES_NO, U = UI_NO;
 let WHO, PROCESS, PROCESS_PARALLEL, PROCESS_SUPPORT;
-let EXAMPLE_LINK_HTML, DEEP_LINK_HTML;
+let EXAMPLE_LINK_HTML, DEEP_LINK_HTML, VEIV_CARD_HTML, VEIV_HREF;
+/* Den interaktive veiviseren ligger i mappen regulatorisk-veileder ved siden av denne siden. Relativ lenke, åpnes i ny fane. */
+function expandTokens(html){
+  return String(html).replace(/<!--VEIVISER-->/g, VEIV_CARD_HTML).replace(/%%VEIV_CLIN%%/g, VEIV_HREF+'#/klinisk').replace(/%%VEIV%%/g, VEIV_HREF);
+}
 
 function setLangData(lang){
   const en = (lang==='en' && window.EN && window.EN.chapters);
@@ -2335,6 +2364,13 @@ function setLangData(lang){
     <span class="dl-label">${U.example.label}</span>
     <h3>${U.example.title}</h3>
     <p>${U.example.text}</p>
+  </a>`;
+  VEIV_HREF = 'regulatorisk-veileder/' + (LANG==='en' ? '?lang=en' : '');
+  VEIV_CARD_HTML = `
+  <a class="deep-link veiv-link" href="${VEIV_HREF}" target="_blank" rel="noopener">
+    <span class="dl-label">${U.veiv.label}</span>
+    <h3>${U.veiv.title}<span class="veiv-arrow" aria-hidden="true"> ↗</span><span class="sr-only"> ${U.veiv.newtab}</span></h3>
+    <p>${U.veiv.text}</p>
   </a>`;
   DEEP_LINK_HTML = `
   <a class="deep-link" href="#/pakkeforlop/metodevurdering">
@@ -2486,6 +2522,12 @@ function renderHome_NO(){
       <p class="lede-dark">Klikk deg inn der du trenger det. Pakkeforløpet i kapittel 4 er selve veiviseren — de andre kapitlene gir deg det regulatoriske, aktørene og verktøyene rundt det.</p>
       <div class="routemap" id="homeRoute"></div>
     </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="wrap">
+      <div style="max-width:760px">${VEIV_CARD_HTML}</div>
+    </div>
   </section>`;
 }
 
@@ -2545,7 +2587,7 @@ function renderChapter(n){
   </section>
   <section class="chapter-body">
     <div class="wrap-narrow">
-      ${c.body}
+      ${expandTokens(c.body)}
       ${chapterNav(n)}
     </div>
   </section>`;
@@ -2709,8 +2751,10 @@ function renderPhase(n){
     <div class="wrap-narrow">
       <a class="backlink" href="#/kapittel/4">${U.backlink}</a>
       ${phaseDots(p.n)}
+      ${p.note?`<div class="phase-note">${expandTokens(p.note)}</div>`:''}
       ${p.who?`<div class="phase-note"><strong>${U.aboutPhase}</strong> ${p.who}</div>`:''}
-      <ul class="blist">${p.body}</ul>
+      <ul class="blist">${expandTokens(p.body)}</ul>
+      ${p.veiviser?VEIV_CARD_HTML:''}
       ${p.example?EXAMPLE_LINK_HTML:''}
       ${p.deep?DEEP_LINK_HTML:''}
       <nav class="chapter-nav" aria-label="${U.phNav.aria}">
