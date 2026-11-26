@@ -257,6 +257,37 @@ table.tbl .muted{display:block;margin-top:6px;font-size:var(--fs-xs);}
 @media(max-width:380px){.wrap{padding:0 14px;}.q-card{padding:22px 16px;}.opt{padding:14px 12px 14px 50px;}.opt .ind{left:12px;top:15px;}}
 @media(prefers-reduced-motion:reduce){.q-card{animation:none;} *{transition:none !important;}}
 
+/* ---------- Din vei (rekkefølge og spor, uten tidsangivelser) ---------- */
+.res-sec#sec-flow{max-width:none;}
+.res-sec#sec-flow>p{max-width:var(--measure);}
+.flow{display:grid;gap:0;margin:var(--sp-3) 0 var(--sp-2);counter-reset:none;}
+.flow-stage{position:relative;padding:0 0 var(--sp-3) 44px;margin:0;}
+.flow-stage::before{content:"";position:absolute;left:15px;top:32px;bottom:0;width:2px;background:var(--tint-2);}
+.flow-stage:last-child::before{display:none;}
+.res-sec .flow-stage h3{display:flex;align-items:center;gap:12px;margin:0 0 10px -44px;font-size:var(--fs-md);line-height:1.25;}
+.flow-n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:var(--fs-sm);}
+.flow-track{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius);padding:10px 14px 2px;margin:0 0 10px;}
+.flow-track.tr-clin{border-left-color:var(--navy);}
+.flow-track.tr-ai,.flow-track.tr-data{border-left-color:var(--mid);}
+.flow-track.tr-site{border-left-color:var(--tint-2);}
+.res-sec .flow-tag{margin:0 0 6px;font-size:var(--fs-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);}
+.flow-track ul.blist{margin:0 0 6px;max-width:none;}
+.flow-track li{overflow-wrap:break-word;hyphens:manual;}
+.flow-t{display:block;}
+.flow-track ul.blist li{padding-bottom:6px;font-size:var(--fs-sm);line-height:1.5;}
+.res-sec .flow-note{margin-top:var(--sp-2);color:var(--ink-soft);font-size:var(--fs-sm);}
+@media(min-width:1000px){
+  .flow{grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:14px;}
+  .flow-stage{padding:0;}
+  .flow-stage::before{display:none;}
+  .flow-stage::after{content:"";position:absolute;left:46px;right:-14px;top:15px;height:2px;background:var(--tint-2);z-index:0;}
+  .flow-stage:last-child::after{right:0;}
+  .res-sec .flow-stage h3{margin:0 0 14px;position:relative;z-index:1;}
+  .flow-n{box-shadow:0 0 0 4px var(--paper);}
+  .flow-t{background:var(--paper);padding:0 8px 0 0;}
+  .flow-track ul.blist li{padding-left:20px;}
+}
+@media print{.res-sec#sec-flow{break-inside:auto;}.flow{display:block;}.flow-stage{break-inside:avoid;padding-left:44px;}.flow-stage::after{display:none;}.flow-stage::before{display:block;}.res-sec .flow-stage h3{margin-left:-44px;}.flow-n{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 @media print{
   .site-header,.rail-wrap,.skip-link,.hero::after,.actions,.res-tools,.res-bar,.help,.wiz-aside,footer .footer-grid{display:none !important;}
   body{background:#fff;font-size:11pt;}
@@ -330,7 +361,7 @@ table.tbl .muted{display:block;margin-top:6px;font-size:var(--fs-xs);}
       </ul>
     </div>
   </div>
-  <div class="wrap footer-updated"><p><span data-i18n="updatedLabel">Siste oppdatering:</span> <time id="last-updated" datetime="2026-11-24">24. november, 2026</time></p></div>
+  <div class="wrap footer-updated"><p><span data-i18n="updatedLabel">Siste oppdatering:</span> <time id="last-updated" datetime="2026-11-25">25. november, 2026</time></p></div>
   <div class="wrap print-only" data-i18n="printOnly">Utarbeidet med NorTrials regulatoriske veiviser. Veiledende og ikke en juridisk vurdering.</div>
 </footer>
 
@@ -1422,6 +1453,214 @@ D.I18N.EN = EN;
 
 </script>
 <script>
+/* NorTrials regulatorisk veiviser: «Din vei», rekkefølge og parallelle spor ut fra svarene.
+   Én logikk for begge språk (tekstene ligger i TX). Viser bare rekkefølge og avhengigheter, ingen tidsangivelser. */
+(function (root) {
+'use strict';
+
+var TX = {
+  no: {
+    title: 'Din vei i korte trekk',
+    intro: 'Oversikten viser i hvilken rekkefølge arbeidet vanligvis tas, ut fra svarene dine. Trinnene leses fra venstre mot høyre eller fra topp til bunn. Trinn i samme kolonne, i ulike spor, kan gjøres parallelt. Tid er ikke angitt, siden den varierer mye med klasse, kapasitet hos teknisk kontrollorgan og kvaliteten på dokumentasjonen.',
+    note: 'Rekkefølgen er veiledende. Detaljene for hvert trinn står i avsnittene under.',
+    ariaGroup: 'Rekkefølge på trinnene',
+    stage: 'Trinn',
+    tracks: { reg: 'Regulatorisk og kvalitet', clin: 'Klinisk evidens', ai: 'AI og data', data: 'Data og sikkerhet', site: 'NorTrials og sykehus' },
+    stages: { 1: 'Avklar', 2: 'Bygg grunnlaget', 3: 'Dokumenter og test', 4: 'Vurdering og CE-merking', '4b': 'Erklæring og ibruktaking', 5: 'Etter markedsføring' },
+    s: {
+      purpose: 'Skriv det tiltenkte formålet som én presis tekst.',
+      classNew: 'Klassifiser regel for regel og dokumenter begrunnelsen.',
+      classDoc: 'Dokumenter begrunnelsen for klassen.',
+      firstMeeting: 'Ta kontakt med NorTrials Medisinsk utstyr for et første møte.',
+      needInHouse: 'Begrunn at pasientgruppens behov ikke kan dekkes av utstyr på markedet.',
+      prescription: 'Sørg for skriftlig forskrivning fra en autorisert person for én bestemt pasient.',
+      qms: 'Start kvalitetssystemet (ISO 13485), helst før utprøving.',
+      qmsInHouse: 'Lag og bruk utstyret under et egnet kvalitetsstyringssystem.',
+      risk: 'Risikohåndtering (ISO 14971).',
+      techdoc: 'Bygg teknisk dokumentasjon underveis i utviklingen.',
+      gspr: 'Dokumenter samsvar med de generelle sikkerhets- og ytelseskravene.',
+      annexXIII: 'Lag dokumentasjonen etter MDR vedlegg XIII.',
+      swLife: 'Programvarens livssyklus (IEC 62304) og endringskontroll.',
+      nbEarly: 'Ta tidlig kontakt med et teknisk kontrollorgan.',
+      cepMdr: 'Lag en klinisk evalueringsplan og start litteratursøket tidlig.',
+      cepIvdr: 'Lag en plan for ytelsesevaluering: kartlegg hvilke data som finnes, og hvor hullene er.',
+      clinDocument: 'Dokumenter klinisk nytte og ytelse for formålet.',
+      aiPlan: 'Planlegg AI-kravene sammen med MDR/IVDR-arbeidet, med datastyring og endringskontroll.',
+      dataSec: 'Personvern (DPIA, databehandleravtaler) og cybersikkerhet.',
+      vv: 'Verifikasjon og validering, og bruksegnethet (IEC 62366-1).',
+      collectMdr: 'Samle kliniske data fra litteratur og tilsvarende utstyr, og planlegg egne data der det er hull.',
+      collectIvdr: 'Samle data om vitenskapelig validitet, analytisk ytelse og klinisk ytelse.',
+      trial: 'Utprøving: planlegg sponsor, studieprotokoll (CIP), forskerens brosjyre (IB) og valg av CRO.',
+      applications: 'Søknader til DMP og REK KULMU, og avklar sykehusets interne godkjenninger.',
+      reviewEthics: 'Avklar om prosjektet krever forskningsetisk vurdering og personvernvurdering.',
+      nbAssess: 'Samsvarsvurdering hos teknisk kontrollorgan.',
+      selfDecl: 'Egenerklæring: produsenten lager teknisk dokumentasjon og samsvarserklæring selv.',
+      unknownAssess: 'Samsvarsvurdering: egenerklæring eller teknisk kontrollorgan, avhengig av klassen.',
+      cerMdr: 'Ferdigstill den kliniske evalueringsrapporten (CER).',
+      cerIvdr: 'Ferdigstill rapporten om ytelsesevaluering.',
+      declCe: 'Samsvarserklæring og CE-merking.',
+      eudamed: 'Registrering i EUDAMED og unik utstyrsidentifikasjon (UDI).',
+      declPublic: 'Lag en offentlig tilgjengelig erklæring om utstyret og produsenten. Utstyret CE-merkes ikke og overføres ikke til andre enheter.',
+      declCustom: 'Produsenten lager en erklæring med nødvendig dokumentasjon, og utstyret CE-merkes ikke.',
+      nbImplant: 'Implanterbart klasse III-utstyr krever i tillegg teknisk kontrollorgan.',
+      pms: 'Overvåking etter markedsføring (PMS), rapportering av hendelser og vurdering av endringer.',
+      pmcf: 'Klinisk oppfølging etter markedsføring (PMCF), knyttet til konkrete hull i evidensen.',
+      pmpf: 'Oppfølging av ytelse etter markedsføring (PMPF).',
+      experience: 'Vurder erfaringer fra klinisk bruk, sett inn nødvendige korrigerende tiltak og meld hendelser.',
+      adoption: 'Innføring i helsetjenesten: metodevurdering og Nye metoder.'
+    }
+  },
+  en: {
+    title: 'Your route in brief',
+    intro: 'The overview shows the order in which the work usually proceeds, based on your answers. Read the steps from left to right or from top to bottom. Steps in the same column, in different tracks, can be done in parallel. No timing is given, because it varies widely with the class, notified body capacity and the quality of the documentation.',
+    note: 'The order is indicative. The details of each step are in the sections below.',
+    ariaGroup: 'Order of the steps',
+    stage: 'Step',
+    tracks: { reg: 'Regulatory and quality', clin: 'Clinical evidence', ai: 'AI and data', data: 'Data and security', site: 'NorTrials and hospital' },
+    stages: { 1: 'Clarify', 2: 'Build the foundation', 3: 'Document and test', 4: 'Assessment and CE marking', '4b': 'Declaration and putting into service', 5: 'After market placement' },
+    s: {
+      purpose: 'Write the intended purpose as one precise text.',
+      classNew: 'Classify rule by rule and document the reasoning.',
+      classDoc: 'Document the reasoning for the class.',
+      firstMeeting: 'Contact NorTrials Medical Devices for a first meeting.',
+      needInHouse: 'Justify that the patient group’s needs cannot be met by a device on the market.',
+      prescription: 'Make sure there is a written prescription from an authorised person for one specific patient.',
+      qms: 'Start the quality system (ISO 13485), preferably before any investigation.',
+      qmsInHouse: 'Make and use the device under a suitable quality management system.',
+      risk: 'Risk management (ISO 14971).',
+      techdoc: 'Build the technical documentation during development.',
+      gspr: 'Document conformity with the general safety and performance requirements.',
+      annexXIII: 'Prepare the documentation under MDR Annex XIII.',
+      swLife: 'The software life cycle (IEC 62304) and change control.',
+      nbEarly: 'Contact a notified body early.',
+      cepMdr: 'Draw up a clinical evaluation plan and start the literature search early.',
+      cepIvdr: 'Draw up a performance evaluation plan: map which data exist and where the gaps are.',
+      clinDocument: 'Document clinical benefit and performance for the intended purpose.',
+      aiPlan: 'Plan for the AI requirements together with the MDR/IVDR work, with data governance and change control.',
+      dataSec: 'Data protection (DPIA, data processing agreements) and cybersecurity.',
+      vv: 'Verification and validation, and usability (IEC 62366-1).',
+      collectMdr: 'Collect clinical data from literature and equivalent devices, and plan your own data where there are gaps.',
+      collectIvdr: 'Collect data on scientific validity, analytical performance and clinical performance.',
+      trial: 'Investigation: plan the sponsor, the clinical investigation plan (CIP), the investigator’s brochure (IB) and the choice of CRO.',
+      applications: 'Applications to DMP and REK KULMU, and clarify the hospital’s internal approvals.',
+      reviewEthics: 'Clarify whether the project requires research ethics review and a data protection assessment.',
+      nbAssess: 'Conformity assessment by the notified body.',
+      selfDecl: 'Self-declaration: the manufacturer prepares the technical documentation and the declaration of conformity.',
+      unknownAssess: 'Conformity assessment: self-declaration or notified body, depending on the class.',
+      cerMdr: 'Finalise the clinical evaluation report (CER).',
+      cerIvdr: 'Finalise the performance evaluation report.',
+      declCe: 'Declaration of conformity and CE marking.',
+      eudamed: 'Registration in EUDAMED and unique device identification (UDI).',
+      declPublic: 'Make a publicly available declaration about the device and the manufacturer. The device is not CE marked and is not transferred to other entities.',
+      declCustom: 'The manufacturer prepares a statement with the necessary documentation, and the device is not CE marked.',
+      nbImplant: 'Implantable class III devices also require a notified body.',
+      pms: 'Post-market surveillance (PMS), incident reporting and assessment of changes.',
+      pmcf: 'Post-market clinical follow-up (PMCF), tied to specific gaps in the evidence.',
+      pmpf: 'Post-market performance follow-up (PMPF).',
+      experience: 'Review experience from clinical use, take any corrective action needed and report incidents.',
+      adoption: 'Adoption in the health service: health technology assessment and New Methods.'
+    }
+  }
+};
+
+function needsNB(f) {
+  if (!f.cls || f.cls === 'ukjent') return null;
+  if (f.reg === 'mdr') return f.cls === 'I' ? (f.extras && f.extras.length ? 'delvis' : false) : true;
+  return f.cls === 'A' ? 'delvis' : true;
+}
+
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+/* Bygger trinnene som data: [{ key, titleKey, tracks: [{ track, steps: [nøkkel] }] }] */
+function plan(f) {
+  var ivdr = f.reg === 'ivdr';
+  var inhouse = f.path === 'inhouse', custom = f.path === 'custom';
+  var ce = !inhouse && !custom;
+  var nb = needsNB(f);
+  var clinPlanned = !!(f.clinPlan || (f.clin && f.clin.indexOf('art') === 0));
+  var reviewOnly = f.clin === 'nonmdr_impl' || f.clin === 'retro_nonmdr';
+  var hasAi = f.ai && f.ai !== 'none';
+  var hasSw = f.sw && f.sw !== 'none';
+  var s1 = [], s2 = [], s3 = [], s4 = [], s5 = [];
+  function add(arr, track, steps) {
+    var st = steps.filter(Boolean); if (!st.length) return;
+    for (var i = 0; i < arr.length; i++) if (arr[i].track === track) { arr[i].steps = arr[i].steps.concat(st); return; }
+    arr.push({ track: track, steps: st });
+  }
+
+  var reg1 = ['purpose'];
+  if (ce) reg1.push(!f.cls || f.cls === 'ukjent' || f.clsBasis === 'screening' ? 'classNew' : 'classDoc');
+  if (inhouse) reg1.push('needInHouse');
+  if (custom) reg1.push('prescription');
+  add(s1, 'reg', reg1);
+  add(s1, 'site', ['firstMeeting']);
+
+  var reg2 = [];
+  if (ce) reg2.push('qms', 'risk', 'techdoc');
+  else if (inhouse) reg2.push('qmsInHouse', 'risk', 'gspr');
+  else reg2.push('risk', 'annexXIII');
+  if (hasSw && !custom) reg2.push('swLife');
+  if (ce && nb !== false) reg2.push('nbEarly');
+  add(s2, 'reg', reg2);
+  if (ce) add(s2, 'clin', [ivdr ? 'cepIvdr' : 'cepMdr']);
+  if (hasAi) add(s2, 'ai', ['aiPlan']);
+  if (hasSw) add(s2, hasAi ? 'ai' : 'data', ['dataSec']);
+
+  if (ce) add(s3, 'reg', ['vv']);
+  if (clinPlanned) add(s3, 'clin', ['trial']);
+  else if (ce) add(s3, 'clin', [ivdr ? 'collectIvdr' : 'collectMdr']);
+  else if (inhouse) add(s3, 'clin', ['clinDocument']);
+  if (clinPlanned) add(s3, 'site', ['applications']);
+  else if (reviewOnly) add(s3, 'site', ['reviewEthics']);
+
+  if (ce) {
+    add(s4, 'reg', [nb === false ? 'selfDecl' : (nb === true ? 'nbAssess' : 'unknownAssess'), 'declCe', 'eudamed']);
+    add(s4, 'clin', [ivdr ? 'cerIvdr' : 'cerMdr']);
+  } else if (inhouse) {
+    add(s4, 'reg', ['declPublic']);
+  } else {
+    add(s4, 'reg', ['declCustom', f.cls === 'III' ? 'nbImplant' : null]);
+  }
+
+  if (ce) {
+    add(s5, 'reg', ['pms']);
+    add(s5, 'clin', [ivdr ? 'pmpf' : 'pmcf']);
+    if (f.role === 'produsent' || f.role === 'sykehus_utvikler') add(s5, 'site', ['adoption']);
+  } else {
+    add(s5, 'reg', ['experience']);
+  }
+
+  var out = [];
+  [[1, '1', s1], [2, '2', s2], [3, '3', s3], [4, ce ? '4' : '4b', s4], [5, '5', s5]].forEach(function (x) {
+    if (x[2].length) out.push({ titleKey: x[1], tracks: x[2] });
+  });
+  return out;
+}
+
+/* Gir ferdig HTML-seksjon, eller null hvis veien ikke er relevant (ikke utstyr, eller bruker av CE-merket utstyr). */
+function build(f, lang) {
+  if (f.device === false || f.role === 'bruker') return null;
+  var T = TX[lang === 'en' ? 'en' : 'no'];
+  var st = plan(f);
+  var h = '<p>' + esc(T.intro) + '</p>';
+  h += '<div class="flow" role="group" aria-label="' + esc(T.ariaGroup) + '">';
+  st.forEach(function (s, i) {
+    h += '<div class="flow-stage"><h3><span class="flow-n" aria-hidden="true">' + (i + 1) + '</span><span class="flow-t"><span class="sr-only">' + esc(T.stage) + ' ' + (i + 1) + ': </span>' + esc(T.stages[s.titleKey]) + '</span></h3>';
+    s.tracks.forEach(function (t) {
+      h += '<div class="flow-track tr-' + t.track + '"><p class="flow-tag">' + esc(T.tracks[t.track]) + '</p><ul class="blist">' +
+        t.steps.map(function (k) { return '<li>' + esc(T.s[k]) + '</li>'; }).join('') + '</ul></div>';
+    });
+    h += '</div>';
+  });
+  h += '</div><p class="flow-note">' + esc(T.note) + '</p>';
+  return { id: 'flow', title: T.title, html: h };
+}
+
+root.WIZ_FLOW = { build: build, plan: plan, TX: TX };
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
 /* NorTrials regulatorisk veiviser: bygger oppsummeringen ut fra svarene (utkast 1) */
 (function (root) {
 'use strict';
@@ -1869,6 +2108,7 @@ function build(f) {
     var af = secAfter(f); if (af) secs.push(af);
     secs.push(secNext(f));
   }
+  var fl = root.WIZ_FLOW && root.WIZ_FLOW.build(f, 'no'); if (fl) secs.unshift(fl);
   var used = ['mdr', 'ivdr', 'aiact', 'omnibus', 'mdcg1911', 'swtree', 'mdcg2124', 'mdcg256', 'mdcg20201', 'mdcg20216', 'mdcg20218', 'dmpveiviser', 'dmpregelverk', 'dmpkval', 'dmpsw', 'dmpeudamed', 'rek', 'feas', 'mdcglist'];
   if (f.reg !== 'ivdr' && f.path !== 'custom') { used.push('meddev271'); if (f.mdsw) used.push('imdrfn41', 'sc1', 'sc2', 'sc3', 'sc4'); used.push('sc5'); }
   if (f.path === 'inhouse') used.push('mdcg20231');
@@ -2339,6 +2579,7 @@ function build(f) {
     var af = secAfter(f); if (af) secs.push(af);
     secs.push(secNext(f));
   }
+  var fl = root.WIZ_FLOW && root.WIZ_FLOW.build(f, 'en'); if (fl) secs.unshift(fl);
   var used = ['mdr', 'ivdr', 'aiact', 'omnibus', 'mdcg1911', 'swtree', 'mdcg2124', 'mdcg256', 'mdcg20201', 'mdcg20216', 'mdcg20218', 'dmpveiviser', 'dmpregelverk', 'dmpkval', 'dmpsw', 'dmpeudamed', 'rek', 'feas', 'mdcglist'];
   if (f.reg !== 'ivdr' && f.path !== 'custom') { used.push('meddev271'); if (f.mdsw) used.push('imdrfn41', 'sc1', 'sc2', 'sc3', 'sc4'); used.push('sc5'); }
   if (f.path === 'inhouse') used.push('mdcg20231');
@@ -2363,7 +2604,7 @@ var live = document.getElementById('live');
 
 /* ---------- Siste oppdatering ----------
    Endre KUN her etter hver større oppdatering (ISO-dato + visningstekst per språk). */
-var LAST_UPDATED = { iso: '2026-11-24', no: '24. november, 2026', en: '24 November 2026' };
+var LAST_UPDATED = { iso: '2026-11-25', no: '25. november, 2026', en: '25 November 2026' };
 
 /* ---------- Språk ---------- */
 var LANG_KEY = 'nt-veileder-lang'; /* samme nøkkel som veilederen, så språkvalget følger med mellom sidene */

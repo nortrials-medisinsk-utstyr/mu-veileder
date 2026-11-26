@@ -523,7 +523,7 @@ noscript .ns{padding:120px 24px;max-width:60ch;margin:0 auto;color:var(--ink);}
       <p data-i18n="ftAbout1">Senter ved St. Olavs hospital, del av det nasjonale NorTrials-konsortiet for kliniske studier.</p>
       <p data-i18n="ftAbout2">Nasjonal veileder for utvikling og utprøving av medisinsk utstyr i norske sykehus.</p>
       <!-- Siste oppdatering: endre her (norsk) og i en/ui.js, nøkkel ftUpdated (engelsk), etter hver større oppdatering -->
-      <p class="footer-updated"><time datetime="2026-11-24" data-i18n="ftUpdated">Siste oppdatering: 24. november, 2026</time></p>
+      <p class="footer-updated"><time datetime="2026-11-25" data-i18n="ftUpdated">Siste oppdatering: 25. november, 2026</time></p>
     </div>
     <div>
       <h2 data-i18n="ftNavH">Naviger</h2>
@@ -763,6 +763,7 @@ EN.chapters = [
     <li>Data protection and data processing: the General Data Protection Regulation (GDPR), the Health Registries Act (helseregisterloven), data processing agreements and a data protection impact assessment (DPIA).</li>
     <li>Clinical evaluation of software: particular methodological challenges in documenting clinical benefit and performance for algorithms.</li>
   </ul>
+  <p>If you need a more thorough, documented assessment of whether your software is a medical device and which class it falls into, there are external tools that supplement this guide. See <a href="#/kapittel/8">chapter 8.4</a>.</p>
   <!--VEIVISER-->`
 },
 {
@@ -1147,6 +1148,12 @@ EN.chapters = [
     <li><a class="ext" href="https://www.uio.no/english/research/interfaculty-research-areas/growth-house/news-and-events/news/2025/new-service-for-medical-device.html" target="_blank" rel="noopener">UiO Growth House: Medical Device Guidance</a> — digital guidance service on regulatory requirements for medical devices.</li>
     <li><a class="ext" href="https://www.bsigroup.com/en-US/insights-and-media/insights/whitepapers/a-roadmap-for-smes-and-startups/" target="_blank" rel="noopener">BSI: a roadmap for SMEs and start-ups</a> — guidance on EU requirements for medical devices and in vitro diagnostics.</li>
     <li>International roadmaps used as inspiration, including from <a class="ext" href="https://www.england.nhs.uk/aac/wp-content/uploads/sites/50/2023/04/aac005a-health-technology-pathway-map.pdf" target="_blank" rel="noopener">NHS England</a> and <a class="ext" href="https://www.has-sante.fr/jcms/p_3213810/en/pathway-of-medical-devices-in-france" target="_blank" rel="noopener">the French health authority HAS</a>.</li>
+  </ul>
+
+  <h3>Digital tools for regulatory assessment</h3>
+  <p>The tools below supplement this guide. They are developed by other parties, and NorTrials is not responsible for their content or for the assessments they give.</p>
+  <ul class="blist">
+    <li><a class="ext" href="https://www.cs-tran.no/software-assessment/" target="_blank" rel="noopener">CS-TRAN Regulatory Navigator</a>: a free, online regulatory guidance tool that leads the user through a structured process for the qualification and classification of software as a medical device under the MDR. The tool was developed by the Norwegian consultancy CS-TRAN Compliance Services and is available in English. The data entered is stored locally in the user’s browser. The tool gives only a preliminary regulatory assessment and does not represent a formal assessment by the authorities or by NorTrials. The user can choose to share the assessment report with CS-TRAN for expert review.</li>
   </ul>`
 },
 
@@ -1266,6 +1273,7 @@ EN.chapters = [
   <table class="data-table">
     <thead><tr><th scope="col">Version</th><th scope="col">Date</th><th scope="col">Change</th></tr></thead>
     <tbody>
+      <tr><th scope="row" class="term">1.1</th><td>November 2026</td><td>New content based partly on a webinar with Scarlet (18 November 2026): intended purpose in phase 0, a rule 11 table in chapter 2, three types of clinical evidence, planning, state of the art and a message for researchers in phase 3, PMCF in phase 6 and four pitfalls in chapter 6. Clarification of clinical evaluation versus clinical investigation in phase 3. ISO 14155:2026. Links to the regulatory guide. A mention of an external tool in 8.4. “Last updated” in the footer replaces the version display.</td></tr>
       <tr><th scope="row" class="term">1.0</th><td>October 2026</td><td>First version for publication. Incorporated feedback from NorTrials' coordinating unit. New process figure as an example of an investigation pathway in chapter 4. The New Methods process for medical devices (from 1 May 2026) and the health technology assessment page have been updated against the sources. Complete references with links. Abbreviations are spelled out and the glossary has been expanded. Chapter 7 has been completed with a decision tree for medical devices, risk classes, preparation before a clinical investigation, contacting NorTrials and hospital facilities. The timeline figure is omitted in this version.</td></tr>
       <tr><th scope="row" class="term">0.2</th><td>October 2026</td><td>Revised after expert review: clearer target audience (industry first), rewritten «diffusion of responsibility» and «pilot fatigue», adjusted actor table, new points in phases 0, 1, 2, 3, 4 and 5, new deep dive on health technology assessment, the Sunnaas process as a figure in phase 1. The timeline figure in 7.5 has been removed (coming later). Internal test version.</td></tr>
       <tr><th scope="row" class="term">0.1</th><td>August 2026</td><td>First draft/skeleton — structure and keywords for further development.</td></tr>
@@ -1416,7 +1424,7 @@ EN.static = {
   railAria:'Chapters',
   ftAltMu:'Medical Devices',
   ftAbout1:'A centre at St. Olavs hospital, part of the national NorTrials consortium for clinical studies.',
-  ftAbout2:'National guide for the development and clinical investigation of medical devices in Norwegian hospitals.',  ftUpdated:'Last updated: 24 November 2026',
+  ftAbout2:'National guide for the development and clinical investigation of medical devices in Norwegian hospitals.',  ftUpdated:'Last updated: 25 November 2026',
   ftNavH:'Navigate',
   ftPath:'The package pathway', ftMv:'Health technology assessment', ftReg:'The regulatory foundation',
   ftTools:'Toolbox and checklists', ftGlossary:'Glossary and abbreviations', ftRefs:'References',
@@ -1845,6 +1853,7 @@ const CHAPTERS_NO = [
     <li>Personvern og databehandling: personvernforordningen (GDPR), helseregisterloven, databehandleravtaler og personvernkonsekvensvurdering (DPIA).</li>
     <li>Klinisk evaluering av programvare: særlige metodiske utfordringer ved å dokumentere klinisk nytte og ytelse for algoritmer.</li>
   </ul>
+  <p>Trenger du en grundigere, dokumentert vurdering av om programvaren er medisinsk utstyr og hvilken klasse den får, finnes det eksterne verktøy som supplerer veilederen. Se <a href="#/kapittel/8">kapittel 8.4</a>.</p>
   <!--VEIVISER-->`
 },
 {
@@ -2228,6 +2237,12 @@ const CHAPTERS_NO = [
     <li><a class="ext" href="https://www.uio.no/english/research/interfaculty-research-areas/growth-house/news-and-events/news/2025/new-service-for-medical-device.html" target="_blank" rel="noopener">UiO Growth House: Medical Device Guidance</a> — digital veiledningstjeneste for regulatoriske krav til medisinsk utstyr.</li>
     <li><a class="ext" href="https://www.bsigroup.com/en-US/insights-and-media/insights/whitepapers/a-roadmap-for-smes-and-startups/" target="_blank" rel="noopener">BSI: veikart for SMB-er og oppstartsselskaper</a> — veiledning om EU-krav til medisinsk utstyr og in vitro-diagnostikk.</li>
     <li>Internasjonale veikart brukt som inspirasjon, blant annet fra <a class="ext" href="https://www.england.nhs.uk/aac/wp-content/uploads/sites/50/2023/04/aac005a-health-technology-pathway-map.pdf" target="_blank" rel="noopener">NHS England</a> og <a class="ext" href="https://www.has-sante.fr/jcms/p_3213810/en/pathway-of-medical-devices-in-france" target="_blank" rel="noopener">den franske helsemyndigheten HAS</a>.</li>
+  </ul>
+
+  <h3>Digitale verktøy for regulatorisk vurdering</h3>
+  <p>Verktøyene under supplerer veilederen. De er utviklet av andre aktører, og NorTrials er ikke ansvarlig for innholdet eller for vurderingene de gir.</p>
+  <ul class="blist">
+    <li><a class="ext" href="https://www.cs-tran.no/software-assessment/" target="_blank" rel="noopener">CS-TRAN Regulatory Navigator</a>: et gratis, nettbasert regulatorisk veiledningsverktøy som leder brukeren gjennom en strukturert prosess for kvalifisering og klassifisering av programvare som medisinsk utstyr etter MDR. Verktøyet er utviklet av det norske konsulentselskapet CS-TRAN Compliance Services og er tilgjengelig på engelsk. Dataene som legges inn, lagres lokalt i brukerens nettleser. Verktøyet gir kun en foreløpig regulatorisk vurdering og representerer ikke en formell vurdering fra myndighetene eller NorTrials. Brukeren kan selv velge å dele vurderingsrapporten med CS-TRAN for faglig ekspertvurdering.</li>
   </ul>`
 },
 {
@@ -2346,6 +2361,7 @@ const CHAPTERS_NO = [
   <table class="data-table">
     <thead><tr><th scope="col">Versjon</th><th scope="col">Dato</th><th scope="col">Endring</th></tr></thead>
     <tbody>
+      <tr><th scope="row" class="term">1.1</th><td>November 2026</td><td>Nytt innhold bygget blant annet på webinar med Scarlet (18. november 2026): tiltenkt formål i fase 0, regel 11-tabell i kapittel 2, tre typer klinisk evidens, planlegging, state of the art og forskerbudskap i fase 3, PMCF i fase 6 og fire fallgruver i kapittel 6. Presisering om klinisk evaluering og klinisk utprøving i fase 3. ISO 14155:2026. Lenker til den regulatoriske veiviseren. Omtale av eksternt verktøy i 8.4. «Siste oppdatering» i bunnteksten erstatter versjonsvisningen.</td></tr>
       <tr><th scope="row" class="term">1.0</th><td>Oktober 2026</td><td>Første versjon for publisering. Innarbeidet tilbakemeldinger fra NorTrials koordinerende enhet. Ny prosessfigur som eksempel på et utprøvingsforløp i kapittel 4. Nye metoder-prosessen for medisinsk utstyr (fra 1. mai 2026) og metodevurderingssiden er oppdatert mot kildene. Komplette referanser med lenker. Forkortelser skrives ut og ordlisten er utvidet. Kapittel 7 er fullført med beslutningstre for medisinsk utstyr, risikoklasser, forberedelser før klinisk utprøving, henvendelse til NorTrials og fasiliteter ved sykehus. Tidslinjefiguren er utelatt i denne versjonen.</td></tr>
       <tr><th scope="row" class="term">0.2</th><td>Oktober 2026</td><td>Revidert etter faglig gjennomgang: tydeligere målgruppe (industri først), omskrevet «ansvarspulverisering» og «pilotsyken», justert aktørtabell, nye punkter i fase 0, 1, 2, 3, 4 og 5, ny fordypning om metodevurdering, Sunnaas-prosessen som figur i fase 1. Tidslinjefiguren i 7.5 er fjernet (kommer senere). Intern testversjon.</td></tr>
       <tr><th scope="row" class="term">0.1</th><td>August 2026</td><td>Første utkast/skjelett — struktur og stikkord for videre utarbeidelse.</td></tr>
